@@ -1,54 +1,48 @@
-base_url="https://raw.githubusercontent.com/microverseinc/linters-config"
-branch="master"
-usage="
-Usage: check-linters-config dir
-Please provide a valid dir to compare againts.
-Valid options for dir:
-  html-css
-  javascript
-  react-redux
-  ror
-  ruby
-Example: check-linters-config ruby
-"
+name: Linters
 
-compare () {
-  directory="$1"
-  config_files="$2"
-  for file in "${config_files[@]}"; do
-    if [ -f "${file}" ]; then
-      original_file="${branch}/${directory}/${file}"
-      wget -qO- "${base_url}/${original_file}" |
-      diff \
-        --brief \
-        --report-identical-files \
-        --ignore-all-space \
-        --ignore-blank-lines \
-        --strip-trailing-cr \
-        --label="${original_file}" \
-        - "${file}"
-    else
-      echo "File '${file}' is missing"
-    fi
-  done
-}
+on: pull_request
 
-case $1 in
-  html-css)
-  config_files=(".hintrc" ".stylelintrc.json")
-  ;;
-  ruby)
-  config_files=(".rubocop.yml")
-  ;;
-  ror)
-  config_files=(".stylelintrc.json" ".rubocop.yml")
-  ;;
-  javascript | react-redux)
-  config_files=(".stylelintrc.json" ".eslintrc.json")
-  ;;
-  *)
-  echo "$usage"
-  exit 1
-esac
+env:
+  FORCE_COLOR: 1
 
-compare "$1" "${config_files[@]}"
+jobs:
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Setup Lighthouse
+        run: npm install -g @lhci/cli@0.4.x
+      - name: Lighthouse Report
+        run: lhci autorun --upload.target=temporary-public-storage --collect.staticDistDir=.
+  webhint:
+    name: Webhint
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Setup Webhint
+        run: |
+          npm install --save-dev hint@6.0.x
+          [ -f .hintrc ] || wget https://raw.githubusercontent.com/microverseinc/linters-config/master/html-css/.hintrc
+      - name: Webhint Report
+        run: npx hint --telemetry=off .
+  stylelint:
+    name: Stylelint
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Setup Stylelint
+        run: |
+          npm install --save-dev stylelint@13.3.x stylelint-scss@3.17.x stylelint-config-standard@20.0.x stylelint-csstree-validator
+          [ -f .stylelintrc.json ] || wget https://raw.githubusercontent.com/microverseinc/linters-config/master/html-css/.stylelintrc.json
+      - name: Stylelint Report
+        run: npx stylelint "**/*.{css,scss}"
