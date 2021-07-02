@@ -3,18 +3,18 @@ html {
 }
 
 * {
-    box-sizing: inherit;
-    padding: 0;
-    margin: 0;
-  }
-  
-*:before {
-    box-sizing: inherit;
-    padding: 0;
-    margin: 0;
-  }
-  
-*:after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+*::before {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+*::after {
   box-sizing: inherit;
   padding: 0;
   margin: 0;
