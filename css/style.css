@@ -103,7 +103,7 @@ img {
   height: 44px;
 }
 
-.search:hover{
+.search:hover {
   border: 1px solid #888;
 }
 
@@ -120,10 +120,9 @@ img {
 
 input {
   text-transform: none;
-  text-indent: 0px;
   text-shadow: none;
   cursor: text;
-  font: 400;
+  font: 30px;
   border: none;
   flex: 16;
   align-items: center;
