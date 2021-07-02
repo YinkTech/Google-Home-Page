@@ -55,7 +55,7 @@ a:hover {
 }
 
 .downlink a {
-  font-family: arial,sans-serif;
+  font-family: arial,   sans-serif;
   text-decoration: none;
   font-size: 16px;
   color: #70757a;
@@ -81,15 +81,15 @@ a:hover {
   opacity: 1;
 }
 
-img {
-  max-width: 100%;
-}
-
-.glogo { 
+.second-segment {
   display: flex;
   max-width: 100%;
   flex-direction: column;
   align-items: center;
+}
+
+img {
+  max-width: 100%;
 }
 
 .search {
@@ -119,13 +119,11 @@ img {
 }
 
 input {
-  letter-spacing: normal;
-  word-spacing: normal;
   text-transform: none;
   text-indent: 0px;
   text-shadow: none;
   cursor: text;
-  font: 400 13.3333px;
+  font: 400;
   border: none;
   flex: 16;
   align-items: center;
