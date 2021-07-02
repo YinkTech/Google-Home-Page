@@ -2,9 +2,7 @@ html {
   box-sizing: border-box;
 }
 
-*,
-*:before,
-*:after {
+*,*:before,*:after {
   box-sizing: inherit;
   padding: 0;
   margin: 0;
@@ -19,6 +17,10 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .head {
@@ -41,7 +43,7 @@ body {
 
 .head a {
   text-decoration: none;
-  color: rgba(0,0,0,0.87);;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .head li {
@@ -52,13 +54,21 @@ body {
   flex: 3;
 }
 
+.downlink a {
+  font-family: arial,sans-serif;
+  text-decoration: none;
+  font-size: 16px;
+  color: #70757a;
+  max-width: 100%;
+}
+
 .head a:hover {
   flex: 2;
   text-decoration: underline;
 }
 
 .app-drawer:hover {
-  background: rgba( 0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   opacity: 0.5;
   max-width: 100px;
   border-radius: 10px;
@@ -75,7 +85,7 @@ img {
   max-width: 100%;
 }
 
-.glogo{ 
+.glogo { 
   display: flex;
   max-width: 100%;
   flex-direction: column;
@@ -114,19 +124,18 @@ input {
   text-transform: none;
   text-indent: 0px;
   text-shadow: none;
-  -webkit-rtl-ordering: logical;
   cursor: text;
-  font: 400 13.3333px Arial;
+  font: 400 13.3333px;
   border: none;
   flex: 16;
   align-items: center;
 }
 
-input:hover{
+input:hover {
   border: none;
 }
 
-input:active{
+input:active {
   border: none;
 }
 
@@ -136,7 +145,7 @@ input:active{
 
 .downButton {
   color: #3c4043;
-  font-family: arial,sans-serif;
+  font-family: arial, sans-serif;
   font-size: 15px;
   line-height: 27px;
   background-color: #f8f9fa;
@@ -169,13 +178,13 @@ input:active{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.conty {  
+.conty {
   margin-top: 140px;
   max-width: 100%;
   padding: 28px 30px;
   border-bottom: 1px solid #dadce0;
   font-size: 25px;
-  color: rgba(0,0,0,.54);
+  color: rgba(0, 0, 0, 0.54);
   background: #f2f2f2;
 }
 
@@ -191,7 +200,7 @@ input:active{
   color: #70757a;
   font-size: 14px;
   cursor: pointer;
-  font-family: arial,sans-serif;
+  font-family: sans-serif;
 }
 
 .downlink {
@@ -199,18 +208,6 @@ input:active{
   margin-top: 35px;
   cursor: pointer;
   display: flex;
-}
-
-.downlink a {
-  font-family: arial,sans-serif;
-  text-decoration: none;
-  font-size: 16px;
-  color: #70757a;
-  max-width: 100%;
-}
-
-a:hover{
-  text-decoration: underline;
 }
 
 .link1 {
